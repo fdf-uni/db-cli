@@ -32,7 +32,8 @@ def locations(args: argparse.Namespace) -> None:
         "types": split_to_list(args.types),
         "max_locations": args.max_locations,
     }
-    locations = fetch.locations(**{k: v for k, v in params.items() if v is not None})
+    locations = fetch.locations(
+        **{k: v for k, v in params.items() if v is not None})
     if args.raw:
         print(locations)
     else:
@@ -74,7 +75,8 @@ def trips(args: argparse.Namespace) -> None:
     if args.raw:
         print(trips)
     elif args.interactive:
-        trip = picker.pick_trip(trips, json.loads(trips)["verbindungen"], params)
+        trip = picker.pick_trip(trips, json.loads(trips)[
+                                "verbindungen"], params)
         print(format.format_trip_long(trip), end="")
     else:
         print(format.format_trips(trips, args.max_trips))
@@ -87,7 +89,8 @@ def nearby(args: argparse.Namespace) -> None:
         "max_distance": args.max_distance,
         "max_locations": args.max_locations,
     }
-    locations = fetch.nearby(**{k: v for k, v in params.items() if v is not None})
+    locations = fetch.nearby(
+        **{k: v for k, v in params.items() if v is not None})
     if args.raw:
         print(locations)
     else:
@@ -98,7 +101,8 @@ def departures(args: argparse.Namespace) -> None:
     station = verify_location(args.station)
     t = verify_time(args.time)
     if station is None:
-        raise ValueError("`station` may not be `None` when querying for departures.")
+        raise ValueError(
+            "`station` may not be `None` when querying for departures.")
     departures = fetch.departures(station, t)
     if args.raw:
         print(departures)
@@ -155,8 +159,10 @@ def create_parser() -> argparse.ArgumentParser:
         description="Query available trips from `start` to `end`.",
     )
     trips_parser.set_defaults(func=trips)
-    trips_parser.add_argument("start", action="store", help="The place of departure.")
-    trips_parser.add_argument("end", action="store", help="The destination place.")
+    trips_parser.add_argument("start", action="store",
+                              help="The place of departure.")
+    trips_parser.add_argument("end", action="store",
+                              help="The destination place.")
     trips_parser.add_argument(
         "--time",
         action="store",
@@ -253,3 +259,9 @@ def create_parser() -> argparse.ArgumentParser:
     )
 
     return parser
+
+
+def main():
+    p = create_parser()
+    args = p.parse_args()
+    args.func(args)

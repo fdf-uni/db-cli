@@ -3,7 +3,4 @@
 
 def main():
     from . import cli
-
-    p = cli.create_parser()
-    args = p.parse_args()
-    args.func(args)
+    cli.main()

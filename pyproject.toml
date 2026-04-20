@@ -1,0 +1,23 @@
+[project]
+name = "db-cli"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "python-dateutil>=2.9.0.post0",
+]
+
+[project.scripts]
+db-cli = "db_cli:main"
+
+[build-system]
+requires = ["uv_build>=0.10.12,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.20.1",
+    "ruff>=0.15.11",
+    "types-python-dateutil>=2.9.0.20260408",
+]

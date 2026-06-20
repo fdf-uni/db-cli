@@ -3,7 +3,7 @@ from urllib.parse import urljoin
 import urllib.request
 from datetime import datetime, timezone, timedelta
 
-API_BASE = "https://app.vendo.noncd.db.de/mob/"
+API_BASE = "https://app.services-bahn.de/mob/"
 
 DEFAULT_MAX_DISTANCE = 10000
 DEFAULT_MAX_LOCATIONS = 50

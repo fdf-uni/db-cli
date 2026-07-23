@@ -3,6 +3,7 @@ from urllib.parse import urljoin
 import urllib.request
 from datetime import datetime, timezone, timedelta
 
+# See also: https://github.com/schildbach/public-transport-enabler/blob/master/src/de/schildbach/pte/DbProvider.java
 API_BASE = "https://app.services-bahn.de/mob/"
 
 DEFAULT_MAX_DISTANCE = 10000
